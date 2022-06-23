@@ -25,6 +25,7 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
     const noseRef = React.useRef<any>(null)
     const dogRef = React.useRef<any>()
     const Elref = React.useRef<HTMLInputElement>(null)
+    const IPRef = React.useRef<HTMLTextAreaElement>(null)
    // noseRef.current[0] = React.createRef();
     //noseRef.current[0] = React.createRef();
     useEffect(() => {
@@ -78,6 +79,8 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
                  ):(
                   <>
                    <span className='bk-image'><img className='emoji_view' src='https://twemoji.maxcdn.com/v/latest/svg/1f58a.svg'></img></span>
+                   <span className='input_query'>INPUT A TEXT</span>
+                   <textarea cols={1} ref={IPRef} maxLength={30}></textarea>
                    <button className='btn' onClick={() => onCancel()}>Hello</button>
                   </> 
                  )}
