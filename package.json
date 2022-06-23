@@ -1,0 +1,33 @@
+{
+  "name": "3dtext-generator",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "@types/react-transition-group": "^4.4.4",
+    "@types/react-twemoji": "^0.4.0",
+    "@types/styled-components": "^5.1.25",
+    "polished": "^4.2.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0",
+    "react-transition-group": "^4.4.2",
+    "react-twemoji": "^0.5.0",
+    "styled-components": "^5.3.5",
+    "twemoji": "^14.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.9"
+  }
+}

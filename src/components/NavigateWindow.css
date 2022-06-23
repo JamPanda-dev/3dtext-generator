@@ -1,0 +1,205 @@
+/* 中央に位置させるため-50%をXYに追加 */
+  .fade-enter {
+    position: absolute;
+    opacity: 0.01;
+    transform: translateY(50%) scale(0.95, 0.95);
+    transition: all 1s ease-out;
+  }
+  .fade-enter.fade-enter-active {
+
+    opacity: 1;
+    position: absolute;
+    transform: translateY(0%) scale(1, 1);
+  }
+  .fade-appear {
+
+    position: absolute;
+    opacity: 0.01;
+    transform: translateY(50%) scale(0.95, 0.95);
+    transition: all 1s ease-out;
+  }
+  .fade-appear.fade-appear-active {
+
+    opacity: 1;
+    position: absolute;
+    transform: translateY(0%) scale(1, 1);
+  }
+  .fade-exit {
+ 
+
+    position: absolute;
+    opacity: 1;
+    transform: translateY(0%) scale(1, 1);
+    transition: all 0.2s ease-out;
+  }
+  .fade-exit.fade-exit-active {
+    display: block;
+    top: 50%;
+    left: 50%; top:50%;
+    position: absolute;
+    opacity: 0.01;
+    transform: translateY(20%) scale(0.98, 0.98);
+  }
+  .btn {
+    /* ブラウザ特有のスタイルを無効に */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    margin: 1em 0; 
+    padding: 0.6em 1em; 
+    font-size: 1em; 
+    background-color: #1aa1ff; 
+    color: #FFF; 
+    cursor: pointer; 
+    border-radius: 3px; 
+    border: 0; 
+    transition: 0.3s;
+  }
+  
+  /* ホバー時（カーソルをのせた時）の見た目 */
+  .btn:hover {
+    background-color: #064fda; /* 背景色 */
+  }
+  .fadem {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 5px;
+    --image-parcent: 30%;
+    --shadow-color: 275deg 6% 62%;
+    --shadow-elevation-high:
+    -0.1px 0.6px 0.6px hsl(var(--shadow-color) / 0.36),
+    -0.7px 3px 3.3px -0.5px hsl(var(--shadow-color) / 0.35),
+    -1.3px 5.9px 6.4px -1px hsl(var(--shadow-color) / 0.33),
+    -2.3px 10.7px 11.6px -1.5px hsl(var(--shadow-color) / 0.32),
+    -4.1px 18.9px 20.5px -2px hsl(var(--shadow-color) / 0.3),
+    -6.9px 31.8px 34.4px -2.5px hsl(var(--shadow-color) / 0.28),
+    -11.1px 50.7px 54.9px -2.9px hsl(var(--shadow-color) / 0.27);
+    box-shadow: var(--shadow-elevation-high);
+  }
+  .box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 86%;
+    height: 91%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    position: absolute;
+  }
+  .nose {
+    height: 100%;
+    width: 47%; 
+    border-radius: 5px;
+    border: 2px solid rgb(226, 219, 219);
+  }
+  .bnp_up {
+    height: calc(100% - var(--image-parcent));
+    width: 47%;
+    left: 2px;
+    bottom: 0px;
+    border-top: 2px solid rgb(240, 233, 233);
+    background-color:#fff;
+    position: absolute;
+    border-radius: 0 0 10px 10px;
+  }
+  .bnp_up_t {
+    height: calc(100% - var(--image-parcent));
+    width: 47%;
+    right: 2px;
+    top: var(--image-parcent);
+    background-color: #fff;
+    position: absolute;
+    border-radius: 0 0 10px 10px;
+    padding: 0;
+    margin: 0;
+    border-top: 2px solid rgb(240, 233, 233);
+    margin-bottom: 0;
+  }
+
+  @media (max-width:600px) {
+    .fadem {
+      width: 70%;
+      height: 70%;
+    }
+  }
+  @media (min-width:601px) {
+    .fadem {
+      width: 520px;
+      height: 75%;
+    }
+  }
+
+  b {
+    font-size: 1.6em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 6px;
+    width: 85%;
+  }
+  .input_on {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    top: 29%;
+    width: 85%;
+  }
+  .ftm_o {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+  }
+  .imgview {
+    background-color:#fa9510dc;
+    height: calc(var(--image-parcent) - 2px);
+    width: 47%;
+    top: 2px;
+    right: 2px;
+    border-radius: 5px 5px 0 0;
+    position: absolute;
+  }
+  .icon__fa_ {
+    width: 8%;
+    height: 8%;
+    top: 55%;
+    position: absolute;
+    left: 7%;
+    color:rgb(190, 186, 186);
+  }
+  p.icon__fa_text {
+    top: 50%;
+    position: absolute;
+    left: calc(7% + 8% + 5%);
+    color:rgb(190, 186, 186);
+    height: 8em;
+  }
+  .imgview2 {
+    width: 47.5%;
+    height: calc(var(--image-parcent) - 2px);
+    top: 2px;
+    left: 2px;
+    position: absolute;
+    background-color: #28a1f7;
+    border-radius: 5px 5px 0 0;
+  }
+  .icon__fa_upload_ {
+      left: 50%;
+      top: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      color: white;
+  }
