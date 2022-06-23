@@ -1,17 +1,18 @@
-export function fetch_handle(url: string) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
-  xhr.responseType = "arraybuffer"
-  xhr.onload = function() {
-    var byte = new Uint8Array(xhr.response);
-    var binarystr:string = ""
-    for( var i = 0; i < byte.byteLength; i++ ) {
-      binarystr += String.fromCharCode( byte[ i ] );
-    }
-    var unicode:string = binarystr;
-    var cl_ = window.btoa(unicode);
-    console.log('cl_ respose')
-    return cl_
-  }
-  xhr.send();
+
+export function getFontBase64(url: any) {
+    var contenttype: any;
+    var res_: any;
+   return fetch(url).then((res: any) => {
+    contenttype = res.headers.get('content-type')
+    return res.arrayBuffer()
+  }).then((buffer_) => {
+     var bns_ = ''
+     const nsp_ = new Uint8Array(buffer_);
+     for (let i=0; i<nsp_.length;i++) {
+      bns_ += String.fromCharCode(nsp_[i])
+     }
+     let base64String = window.btoa(bns_)
+     return (`data:${contenttype};base64,${base64String}`)
+  })
 }
+

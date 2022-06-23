@@ -5,7 +5,7 @@ import {math}from 'polished'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {library, IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { faCoins,faUpload } from '@fortawesome/free-solid-svg-icons'
-import { fetch_handle } from '../other/fetch_handling'
+import { getFontBase64 } from '../other/fetch_handling'
 import './NavigateWindow.css'
 library.add(faCoins as IconDefinition);
 library.add(faUpload as IconDefinition);
@@ -56,22 +56,6 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
       reader.readAsDataURL(input_)
     }
     const loadfile = () => {
-    function getFontBase64(url: any) {
-      var contenttype: any;
-      var res_: any;
-     return fetch(url).then((res: any) => {
-      contenttype = res.headers.get('content-type')
-      return res.arrayBuffer()
-    }).then((buffer_) => {
-       var bns_ = ''
-       const nsp_ = new Uint8Array(buffer_);
-       for (let i=0; i<nsp_.length;i++) {
-        bns_ += String.fromCharCode(nsp_[i])
-       }
-       let base64String = window.btoa(bns_)
-       return (res_ = `data:${contenttype};base64,${base64String}`)
-    })
-    }
       const str: any = getFontBase64('../src/font/American Captain.ttf').then(function(data) {
         console.log(data);
        });
@@ -92,7 +76,10 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
                    </>
 
                  ):(
+                  <>
+                   <span className='bk-image'><img className='emoji_view' src='https://twemoji.maxcdn.com/v/latest/svg/1f58a.svg'></img></span>
                    <button className='btn' onClick={() => onCancel()}>Hello</button>
+                  </> 
                  )}
                 </span> 
               </span>
