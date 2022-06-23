@@ -9,12 +9,14 @@ function App() {
   if(window.matchMedia('(prefers-color-scheme: dark)').matches === true) {
     setDarkmode(!isDarkmode)
   }
-  const disChange = () => {
+  const disChange = (value: any, res: String | ArrayBuffer | null) => {
+    console.log(value)
+    console.log(res)
     setisDis(!isDis)
   }
   return (
     <Twemoji options={{ className: 'twemoji'}}>
-      <NavigateWindow isDisplay={isDis} onCancel={() => disChange()} darkmode={isDarkmode}></NavigateWindow>
+      <NavigateWindow isDisplay={isDis} onCancel={(value: any, res: any) => disChange(value, res)} darkmode={isDarkmode}></NavigateWindow>
     </Twemoji>
   )
 }
