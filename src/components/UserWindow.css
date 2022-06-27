@@ -1,6 +1,10 @@
 .overflow_element {
     overflow-x: scroll;
     width: 100%; 
+    height:30%;
+    position: absolute;
+    bottom: 5%;
+    left: 0px;
 }
 
 .head {
@@ -8,7 +12,43 @@
     height: 20%;
     top: 0px;
     left: 0px;
-    background-color:aqua;
     z-index: 1;
     position: absolute;
+    border-bottom: 1px solid rgb(185, 181, 181);
+}
+.controllholder {
+    position: absolute;
+    bottom: 6px;
+    width: 85%;
+    height: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 1px solid rgb(185, 181, 181);
+}
+.btn_ {
+    /* ブラウザ特有のスタイルを無効に */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    right: 20px;
+    top: 7%;
+    z-index: 2;
+    position: absolute;
+    margin: 1em 0; 
+    padding: 0.6em 1em; 
+    font-size: 1em; 
+    background-color: #1aa1ff; 
+    color: #FFF; 
+    cursor: pointer; 
+    border-radius: 3px; 
+    border: 0; 
+    transition: 0.3s;
+  }
+  .btn_:hover {
+    background-color: #064fda; /* 背景色 */
+  }
+  .fa__i_ {
+    margin: 0 .05em 0 .1em;
+    width: 1em;
+    height: 1em;
 }
