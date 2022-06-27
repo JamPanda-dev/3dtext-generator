@@ -117,3 +117,7 @@
     background-color: #1aa1ff;
     border-radius: 9999px;
 }
+.hexpicker {
+    z-index: 9999;
+    position: absolute;
+}

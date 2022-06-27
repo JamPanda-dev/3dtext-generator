@@ -1,0 +1,46 @@
+.builder {
+    padding: 24px;
+    max-width: 400px;
+    background: #eee;
+    border-radius: 12px;
+}
+.controll {
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.color {
+    width: 32px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.color,
+.preview {
+  height: 32px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 1px #888;
+}
+
+.color--0 {
+    order: -1;
+}
+
+.color--active {
+    border: 3px solid #88c;
+}
+
+.preview {
+    flex-grow: 1;
+    margin: 0 8px;
+}
+
+.builder .react-colorful {
+    width: 100%;
+}
+
+.output {
+    margin-top: 20px;
+    opacity: 0.5;
+    font: normal 13px/1 monospace;
+}
