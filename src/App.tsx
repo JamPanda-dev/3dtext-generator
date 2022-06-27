@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import { NavigateWindow } from './components/NavigateWindow'
+import { UserWindow } from './components/UserWindow'
 import './hook/styles/twemoji.css'
 import Twemoji from 'react-twemoji';
 function App() {
@@ -17,6 +18,7 @@ function App() {
   return (
     <Twemoji options={{ className: 'twemoji'}}>
       <NavigateWindow isDisplay={isDis} onCancel={(value: any, res: any) => disChange(value, res)} darkmode={isDarkmode}></NavigateWindow>
+      <UserWindow />
     </Twemoji>
   )
 }

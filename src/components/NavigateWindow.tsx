@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {library, IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { faCoins,faUpload } from '@fortawesome/free-solid-svg-icons'
 import { getFontBase64 } from '../other/fetch_handling'
+import { UserWindow } from './UserWindow'
 import './NavigateWindow.css'
 library.add(faCoins as IconDefinition);
 library.add(faUpload as IconDefinition);
@@ -62,7 +63,7 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
         setresult(data)
       });
     }
-    return(
+    return(<>
             <CSSTransition nodeRef={nodeRef} in={displayState} timeout={1500}  classNames="fade" unmountOnExit>
               <span ref={nodeRef}>
                 <span className='fadem'>
@@ -87,5 +88,6 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
                 <span className='fadem_bg'></span>
               </span>
             </CSSTransition>
+            </>
     )
 }

@@ -1,0 +1,14 @@
+.overflow_element {
+    overflow-x: scroll;
+    width: 100%; 
+}
+
+.head {
+    width: 100%;
+    height: 20%;
+    top: 0px;
+    left: 0px;
+    background-color:aqua;
+    z-index: 1;
+    position: absolute;
+}
