@@ -247,7 +247,7 @@
     height: 110px;
   }
 
-  textarea {
+  textarea:not(.input__field) {
     width: 80%;
     margin: 1em 0;
     padding: 0.5em;
