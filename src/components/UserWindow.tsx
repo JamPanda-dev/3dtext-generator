@@ -65,7 +65,7 @@ export const UserWindow:React.FC = () => {
         <span className='icon_000' />
         <span className='controllholder'>
             <FontAwesomeIcon icon={faRulerHorizontal} className='n08m'/>
-            <textarea className='input__field'></textarea>
+            <input className='input__field' pattern="^[0-9]+$"  title="please input number" type="number"></input>
             <FontAwesomeIcon icon={faGripLines} className='n09m' />
             <span className='bg_stroke' onClick={(e) => onClick(e)} style={kkstyle}></span>
             <FontAwesomeIcon icon={faFill} className='n10m'/>

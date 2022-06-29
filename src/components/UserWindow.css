@@ -130,3 +130,7 @@
     border-radius: 50%;
     left: 7%;
 }
+.input__field:invalid {
+    border: solid 2px red;
+    outline: 0;
+}
