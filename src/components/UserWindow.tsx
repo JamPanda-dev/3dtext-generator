@@ -62,6 +62,7 @@ export const UserWindow:React.FC = () => {
         <span className='btn_'>
             <FontAwesomeIcon icon={faDownload} className='fa__i_'/> DOWNLOAD
         </span>
+        <span className='icon_000' />
         <span className='controllholder'>
             <FontAwesomeIcon icon={faRulerHorizontal} className='n08m'/>
             <textarea className='input__field'></textarea>

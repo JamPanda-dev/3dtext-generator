@@ -121,3 +121,12 @@
     z-index: 9999;
     position: absolute;
 }
+.icon_000 {
+    background: linear-gradient(#e66465, #9198e5);
+    width: 54px;
+    height: 54px;
+    top: 12%;
+    position: absolute;
+    border-radius: 50%;
+    left: 7%;
+}
