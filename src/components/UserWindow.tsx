@@ -17,6 +17,16 @@ export const UserWindow:React.FC = () => {
   const [windowHeight, setWindowHeight] = useState<number>()
   const [fillcolor, setfillcolor] = useState<string>('#aabbcc')
   const {width, height} = useWindowDimensions()
+  const [Picker, SetPicker] = useState<any>()
+  const [isShow, setShow] = useState<boolean>(false)
+  const onClick = (e: any) => {
+    setstyle_0({
+      position: 'fixed',
+      left: e.screenX,
+      top: '21%'
+    })
+  }
+  const [style_0, setstyle_0] = useState<any>('')
   return (
     <>
      <span className='head'>
@@ -27,14 +37,19 @@ export const UserWindow:React.FC = () => {
             <FontAwesomeIcon icon={faRulerHorizontal} className='n08m'/>
             <textarea className='input__field'></textarea>
             <FontAwesomeIcon icon={faGripLines} className='n09m' />
-            <span className='bg_stroke'></span>
-            <FontAwesomeIcon icon={faFill} className='n10m' />
+            <span className='bg_stroke' onClick={(e) => onClick(e)}></span>
+            <FontAwesomeIcon icon={faFill} className='n10m' onClick={(e) => SetPicker(1)}/>
             <span className='bg_fill'></span>
         </span>
      </span>
-     <span className='hexpicker'>
-       <HexColorPicker color={fillcolor} onChange={setfillcolor}/>
-     </span>
+     { style_0 !== ''? (
+       <span style={style_0} onClick={() => setShow(false)} className='hext_cont'>
+         <HexColorPicker color={fillcolor} onChange={setfillcolor}/>
+        </span>
+     ):(
+      <></>
+     )
+     }
     </>
   )
 }
