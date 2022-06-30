@@ -22,6 +22,7 @@ export const UserWindow:React.FC = () => {
   const [isShow, setShow] = useState<boolean>(false)
   const [kkstyle, upkkstyle] = useState<any>()
   const [nnstyle, upnnstyle] = useState<any>()
+  const [aastyle,setaastyle] = useState<any>({width: width * 4, height: height * 4, display: 'block'})
   const onClick = (e: any) => {
     setstyle_0({
       position: 'fixed',
@@ -41,6 +42,7 @@ export const UserWindow:React.FC = () => {
     if (e.target.className !== 'bg_fill') {
       setstyle_1('')
     }
+    setShow(!isShow)
   }
   const onClickO = (e: any) => {
     setstyle_1({
@@ -65,13 +67,15 @@ export const UserWindow:React.FC = () => {
         <span className='icon_000' />
         <span className='controllholder'>
             <FontAwesomeIcon icon={faRulerHorizontal} className='n08m'/>
-            <input className='input__field' pattern="^[0-9]+$"  title="please input number" type="number"></input>
+            <input className='input__field' pattern="^[0-9]+$"  title="please input number" type="number" min="0"></input>
             <FontAwesomeIcon icon={faGripLines} className='n09m' />
             <span className='bg_stroke' onClick={(e) => onClick(e)} style={kkstyle}></span>
             <FontAwesomeIcon icon={faFill} className='n10m'/>
             <span className='bg_fill' style={nnstyle} onClick={(e) => onClickO(e)}></span>
         </span>
      </span>
+    
+    
      { style_0 !== ''? (
        <span style={style_0} className='hext_cont'>
          <HexColorPicker color={strokecolor} onChange={setstrokecolor}/>
@@ -88,6 +92,11 @@ export const UserWindow:React.FC = () => {
       <></>
      )
      }
+     <span className='_body'>
+      <span className='_scroll' style={aastyle}>
+
+      </span>
+     </span>
     </span>
   )
 }
