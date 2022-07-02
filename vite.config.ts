@@ -8,6 +8,6 @@ export default ({ mode }) => {
   return defineConfig({
     plugins: [react()],
     // base: process.env.GITHUB_VA_ ? "/3dtext-generator/" : "/"
-    base: "3dtext-generator"
+    base: "/3dtext-generator/"
   })
 }    
