@@ -17,7 +17,9 @@ jobs:
 
       - name: Build
         run: yarn build
-
+        env: 
+          GITHUB_VA_: ${{secrets.GITHUB_ACTIONS}}
+          
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
