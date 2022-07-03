@@ -35,6 +35,7 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
     useEffect(() => {
       setDisplayState(isDisplay);
     }, [isDisplay])
+    /*
     useEffect(() => {
       if(noseRef && noseRef.current) {
         console.log('running...');
@@ -47,6 +48,7 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
         dogRef.current.style.color = 'white'
       }
     }, [])
+    */
     //const UpState_ = () => {
     //  setLevel(2)
    // }
