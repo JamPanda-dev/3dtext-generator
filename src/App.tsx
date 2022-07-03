@@ -7,18 +7,14 @@ import Twemoji from 'react-twemoji';
 function App() {
   const [isDis, setisDis] = useState(true);
   const [isDarkmode, setDarkmode] = useState(false);
-  const [inputData, setData] = useState<any>();
+  //const [inputData, setData] = useState<any>();
   if(window.matchMedia('(prefers-color-scheme: dark)').matches === true) {
     setDarkmode(!isDarkmode)
   }
   const disChange = (value: any, res: String | ArrayBuffer | null) => {
-    setData({
-      value: value.replace(/\r?\n/g, ''),
-      res: res,
-    }) 
     setisDis(!isDis)
-    console.log(inputData.value)
-    console.log(inputData.res)
+    console.log(value);
+    console.log(res);
   }
   return (
     <Twemoji options={{ className: 'twemoji'}}>
