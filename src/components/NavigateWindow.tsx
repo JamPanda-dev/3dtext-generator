@@ -74,7 +74,7 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
                     <span className="box">
                       <span className='nose' onClick={() => Elref.current?.click()} ><span className='imgview2'><FontAwesomeIcon className='icon__fa_upload_'icon={faUpload as IconDefinition} /></span><span className='bnp_up'><span className='input__1'><b>INPORT FILE</b><span className='input_on'>Load font file(support .woff .otf .ttf file)😄</span></span></span></span>
                       <span className='nose' onClick={() => loadfile()}><span className='imgview' ref={noseRef}><svg preserveAspectRatio="none" ref={dogRef} className="ftm_o" viewBox="0 0 52 70" xmlns="http://www.w3.org/2000/svg"><g id="svgGroup" strokeLinecap="round" fillRule="evenodd" fontSize="9pt" stroke="#000" strokeWidth="0" fill="currentColor"><path d="M 0 0 L 0 12.9 L 18.8 12.9 L 18.8 70 L 33.1 70 L 33.1 12.9 L 52 12.9 L 52 0 L 0 0 Z" vectorEffect="non-scaling-stroke"/></g></svg></span><span className='bnp_up_t'><b>AMERICAN CAPTAIN</b><span className='input_on'>Load American captain Font✨</span><FontAwesomeIcon className='icon__fa_'icon={faCoins as IconDefinition} /><p className='icon__fa_text'>NOT FOR COMMERICIAL USE😰</p></span></span>
-                      <input type="file" ref={Elref} hidden onChange={selectedfile}/>
+                      <input type="file" ref={Elref} hidden onChange={(e) => selectedfile(e)}/>
                     </span>
                    </>
 
