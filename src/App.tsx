@@ -18,7 +18,7 @@ function App() {
   }
   return (
     <Twemoji options={{ className: 'twemoji'}}>
-      <NavigateWindow isDisplay={isDis} onCancel={() => disChange(value, res)} darkmode={isDarkmode}></NavigateWindow>
+      <NavigateWindow isDisplay={isDis} onCancel={(value: any, res: any) => disChange(value, res)} darkmode={isDarkmode}></NavigateWindow>
       <UserWindow />
     </Twemoji>
   )
