@@ -78,7 +78,7 @@ export const UserWindow:React.FC = () => {
     
      { style_0 !== ''? (
        <span style={style_0} className='hext_cont'>
-         <HexColorPicker color={strokecolor} onChange={() => setstrokecolor()}/>
+         <HexColorPicker color={strokecolor} onChange={() => setstrokecolor}/>
        </span>
      ):(
       <></>
@@ -86,7 +86,7 @@ export const UserWindow:React.FC = () => {
      }
      { style_1 !== ''? (
        <span style={style_1} className='hext_cont'>
-         <HexColorPicker color={fillcolor} onChange={() => setfillcolor()}/>
+         <HexColorPicker color={fillcolor} onChange={() => setfillcolor}/>
        </span>
      ):(
       <></>
