@@ -15,7 +15,7 @@ type Props = {
     darkmode?: boolean;
 }
 type ChildrenDispatchProps = {
-    onCancel?: any; 
+    onCancel?: any;
 }
 export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDisplay, onCancel, darkmode}) => {
     const [displayState, setDisplayState] = useState(isDisplay);
@@ -61,7 +61,7 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
       reader.readAsDataURL(input_)
     }
     const loadfile = () => {
-      getFontBase64('../src/font/American Captain.ttf').then(function(data) {
+      getFontBase64('https://raw.githubusercontent.com/jampanda-dev/3dtext-generator/master/src/font/American%20Captain.ttf').then(function(data) {
         setresult(data)
       });
     }
@@ -69,7 +69,7 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
             <CSSTransition nodeRef={nodeRef} in={displayState} timeout={1500}  classNames="fade" unmountOnExit>
               <span ref={nodeRef}>
                 <span className='fadem'>
-                 { result == '' ? ( 
+                 { result == '' ? (
                    <>
                     <span className="box">
                       <span className='nose' onClick={() => Elref.current?.click()} ><span className='imgview2'><FontAwesomeIcon className='icon__fa_upload_'icon={faUpload as IconDefinition} /></span><span className='bnp_up'><span className='input__1'><b>INPORT FILE</b><span className='input_on'>Load font file(support .woff .otf .ttf file)😄</span></span></span></span>
@@ -84,9 +84,9 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
                    <span className='input_query'>INPUT A TEXT</span>
                    <textarea cols={1} onChange={(e) => set_input_data(e.target.value)} maxLength={30}></textarea>
                    <button className='btn' onClick={() => onCancel(input_data, result)}>Start</button>
-                  </> 
+                  </>
                  )}
-                </span> 
+                </span>
                 <span className='fadem_bg'></span>
               </span>
             </CSSTransition>
