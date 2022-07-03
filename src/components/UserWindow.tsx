@@ -7,13 +7,13 @@ import { faDownload, faFill, faGripLines, faRulerHorizontal } from '@fortawesome
 //import {color_picker_components} from './react-colorful-gradient'
 import { HexColorPicker } from 'react-colorful'
 import styled from 'styled-components'
-library.add(faDownload); 
-library.add(faFill); 
-library.add(faGripLines); 
+library.add(faDownload);
+library.add(faFill);
+library.add(faGripLines);
 library.add(faRulerHorizontal);
 
 export const UserWindow:React.FC = () => {
-  const [windowWidth, setWindowWidth] = useState<number>()  
+  const [windowWidth, setWindowWidth] = useState<number>()
   const [windowHeight, setWindowHeight] = useState<number>()
   const [strokecolor, setstrokecolor] = useState<string>('#aabbcc')
   const [fillcolor,setfillcolor] = useState<string>('#aabbcc')
@@ -26,7 +26,7 @@ export const UserWindow:React.FC = () => {
   const onClick = (e: any) => {
     setstyle_0({
       position: 'fixed',
-      left: e.screenX,
+      left: e.clientX,
       top: '21%'
     })
   }
@@ -47,7 +47,7 @@ export const UserWindow:React.FC = () => {
   const onClickO = (e: any) => {
     setstyle_1({
       position: 'fixed',
-      left: e.screenX,
+      left: e.clientX,
       top: '21%'
     })
   }
@@ -74,8 +74,8 @@ export const UserWindow:React.FC = () => {
             <span className='bg_fill' style={nnstyle} onClick={(e) => onClickO(e)}></span>
         </span>
      </span>
-    
-    
+
+
      { style_0 !== '' ? (
        <span style={style_0} className='hext_cont'>
          <HexColorPicker color={strokecolor} onChange={setstrokecolor}/>

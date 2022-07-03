@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import logo from './logo.svg'
 import { NavigateWindow } from './components/NavigateWindow'
 import { UserWindow } from './components/UserWindow'
@@ -8,12 +8,14 @@ function App() {
   const [isDis, setisDis] = useState(true);
   const [isDarkmode, setDarkmode] = useState(false);
   //const [inputData, setData] = useState<any>();
-  if(window.matchMedia('(prefers-color-scheme: dark)').matches === true) {
-    setDarkmode(!isDarkmode)
-  }
+  useEffect(() => {
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches === true) {
+      setDarkmode(!isDarkmode)
+    }
+  },[])
   const disChange = (value: any, res: String | ArrayBuffer | null) => {
     setisDis(!isDis)
-    console.log(value);
+    console.log(value.replace(/\r?\n/g, ''));
     console.log(res);
   }
   return (
