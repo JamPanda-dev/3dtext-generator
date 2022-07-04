@@ -5,6 +5,7 @@ const optimizationText = (text: any, width: any, height: any, fontsize_: any, ba
 //  var _svg = ''
     async function makeText(input: any, x: any, y: any, fontsize: any, _base64: any) {
       const font = await opentype.load(_base64);
+      // @ts-ignore
       const path = font.getPath(input, 0, 150, 72).toPathData();
       return path
     }
