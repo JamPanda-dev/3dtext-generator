@@ -1,5 +1,6 @@
 import { useWindowDimensions } from '../hook/getWindowDimensions'
 import React, {useEffect, useState} from 'react'
+import Moveable from 'react-moveable';
 import './UserWindow.css'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -22,7 +23,11 @@ export const UserWindow:React.FC = () => {
   const [isShow, setShow] = useState<boolean>(false)
   const [kkstyle, upkkstyle] = useState<any>()
   const [nnstyle, upnnstyle] = useState<any>()
-  const [aastyle,setaastyle] = useState<any>({width: width * 4, height: height * 4, display: 'block'})
+  const [aastyle,setaastyle] = useState<any>({width: width * 1.3, height: height * 1.3, display: 'block'})
+  const [target, setTarget] = useState<any>();
+  const [frame, setFrame] = useState({
+    matrix: [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
+  })
   const onClick = (e: any) => {
     setstyle_0({
       position: 'fixed',
