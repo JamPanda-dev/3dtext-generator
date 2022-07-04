@@ -31,14 +31,14 @@ function App() {
        setPath(value);
      })
   }
-  }, [inputdata])
+}, [inputdata, window.innerWidth, window.innerHeight])
   useEffect(() => {
     console.log(myPath)
   },[myPath])
   return (
     <Twemoji options={{ className: 'twemoji'}}>
       <NavigateWindow isDisplay={isDis} onCancel={(value: any, res: any) => disChange(value, res)} darkmode={isDarkmode}></NavigateWindow>
-      <UserWindow />
+      <UserWindow path={myPath}/>
       { typeof inputdata !== 'undefined' ? (
       <></>
     ):(

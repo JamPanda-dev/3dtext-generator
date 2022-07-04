@@ -7,13 +7,16 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faDownload, faFill, faGripLines, faRulerHorizontal } from '@fortawesome/free-solid-svg-icons'
 //import {color_picker_components} from './react-colorful-gradient'
 import { HexColorPicker } from 'react-colorful'
+import encodeSvg  from 'other/encodeSVG'
 import styled from 'styled-components'
 library.add(faDownload);
 library.add(faFill);
 library.add(faGripLines);
 library.add(faRulerHorizontal);
-
-export const UserWindow:React.FC = () => {
+type Props = {
+  path: string;
+}
+export const UserWindow:React.FC<Props> = ({ path }) => {
   const [windowWidth, setWindowWidth] = useState<number>()
   const [windowHeight, setWindowHeight] = useState<number>()
   const [strokecolor, setstrokecolor] = useState<string>('#aabbcc')
@@ -25,9 +28,20 @@ export const UserWindow:React.FC = () => {
   const [nnstyle, upnnstyle] = useState<any>()
   const [aastyle,setaastyle] = useState<any>({width: width * 1.3, height: height * 1.3, display: 'block'})
   const [target, setTarget] = useState<any>();
+  const [windowDetails, setWindowDetails] = useState<any>()
   const [frame, setFrame] = useState({
     matrix: [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
   })
+  const onresizefunction = () => {
+      setWindowDetails({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+  }
+  useEffect(() => {
+      window.addEventListener('resize', onresizefunction)
+      return () => window.removeEventListener('resize', onresizefunction)
+  }, [window.innerWidth, window.innerHeight])
   const onClick = (e: any) => {
     setstyle_0({
       position: 'fixed',
@@ -65,6 +79,8 @@ export const UserWindow:React.FC = () => {
   const [style_1, setstyle_1] = useState<any>('')
   return (
     <span onClick={(e) => onClickP(e)}>
+    <p hidden id="path">{path}</p>
+    <p hidden id="lang">{window.navigator.language}</p>
      <span className='head'>
         <span className='btn_'>
             <FontAwesomeIcon icon={faDownload} className='fa__i_'/> DOWNLOAD

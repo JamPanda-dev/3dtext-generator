@@ -9,7 +9,7 @@ const optimizationText = (text: any, width: any, height: any, fontsize_: any, ba
       const path = font.getPath(input, 0, 150, 72).toPathData();
       return path
     }
-   const len_ = (txt: any) => {
+   const len_ = (txt: any): txt is string => {
      if (txt !== undefined) {
        return txt.length
      }
