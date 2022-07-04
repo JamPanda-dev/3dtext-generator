@@ -7,7 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faDownload, faFill, faGripLines, faRulerHorizontal } from '@fortawesome/free-solid-svg-icons'
 //import {color_picker_components} from './react-colorful-gradient'
 import { HexColorPicker } from 'react-colorful'
-import encodeSvg  from './other/encodeSVG'
+import {encodeSvg}  from './other/encodeSVG'
 import styled from 'styled-components'
 library.add(faDownload);
 library.add(faFill);
