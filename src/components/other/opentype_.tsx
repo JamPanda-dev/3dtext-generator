@@ -13,11 +13,13 @@ const optimizationText = (text: any, width: any, height: any, fontsize_: any, ba
      if (txt !== undefined) {
        return txt.length
      }
+     //@ts-ignore
      return 0
    }
    function get_v(value: any) {
      return value;
    }
+   //@ts-ignore
    const svg_path = makeText(text, (width -  len_(text) * fontsize_) / 2, height / 2, fontsize_, base_)
    //console.log(dt)
   // console.log(svg_path)
