@@ -21,12 +21,12 @@ export const UserWindow:React.FC<Props> = ({ path }) => {
   const [windowHeight, setWindowHeight] = useState<number>()
   const [strokecolor, setstrokecolor] = useState<string>('#aabbcc')
   const [fillcolor,setfillcolor] = useState<string>('#aabbcc')
-  const {width, height} = useWindowDimensions()
+  const [windowSize, setWindowSize] = useState(useWindowDimensions());
   const [Picker, SetPicker] = useState<any>()
   const [isShow, setShow] = useState<boolean>(false)
   const [kkstyle, upkkstyle] = useState<any>()
   const [nnstyle, upnnstyle] = useState<any>()
-  const [aastyle,setaastyle] = useState<any>({width: width * 1.3, height: height * 1.3, display: 'block'})
+  const [aastyle,setaastyle] = useState<any>({width: windowSize.width * 1.3, height: windowSize.height * 1.3, display: 'block'})
   const [target, setTarget] = useState<any>();
   const [windowDetails, setWindowDetails] = useState<any>()
   const [frame, setFrame] = useState({
@@ -41,6 +41,20 @@ export const UserWindow:React.FC<Props> = ({ path }) => {
   useEffect(() => {
       window.addEventListener('resize', onresizefunction)
       return () => window.removeEventListener('resize', onresizefunction)
+  }, [window.innerWidth, window.innerHeight])
+
+// ちなみにuseEffectのアクションはwindow.innerWidthとwindow.innerHeightをもとにしているから、開発者ツールを閉じたり
+// したら適応されないので注意
+  useEffect(() => {
+    setWindowSize({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  })
+    setaastyle({
+      width: windowSize.width * 1.3,
+      height: windowSize.height * 1.3,
+      display: 'block'
+    })
   }, [window.innerWidth, window.innerHeight])
   const onClick = (e: any) => {
     setstyle_0({

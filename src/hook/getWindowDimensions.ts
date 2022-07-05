@@ -14,6 +14,6 @@ export const useWindowDimensions = () => {
       }
       window.addEventListener('resize', onResize)
       return () => window.removeEventListener('resize', onResize)
-    },[window.innerWidth, window.innerHeight])
+    },[])
     return windowDimensions;
 }

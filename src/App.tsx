@@ -5,6 +5,7 @@ import { UserWindow } from './components/UserWindow'
 import './hook/styles/twemoji.css'
 import optimizationText from './components/other/opentype_'
 import Twemoji from 'react-twemoji';
+import {removeemojis} from './components/other/remove_emoji'
 function App() {
   const [isDis, setisDis] = useState(true);
   const [isDarkmode, setDarkmode] = useState(false);
@@ -19,10 +20,9 @@ function App() {
   const disChange = (value: any, res: String | ArrayBuffer | null) => {
     setisDis(!isDis)
     setinputdata({
-    value: value.replace(/\r?\n/g, ''),
+    value: removeemojis(value.replace(/\r?\n/g, '')),
     res: res
     })
-
   }
   useEffect(() => {
   if(typeof inputdata !== 'undefined') {
@@ -31,7 +31,12 @@ function App() {
        setPath(value);
      })
   }
-}, [inputdata, window.innerWidth, window.innerHeight])
+}, [inputdata])
+useEffect(() => {
+  if (typeof inputdata !== 'undefined') {
+  console.log(inputdata.value)
+}
+}, [inputdata])
   useEffect(() => {
     console.log(myPath)
   },[myPath])
