@@ -6,7 +6,7 @@ const optimizationText = (text: any, width: any, height: any, fontsize_: any, ba
     async function makeText(input: any, x: any, y: any, fontsize: any, _base64: any) {
       const font = await opentype.load(_base64);
       // @ts-ignore
-      const path = font.getPath(input, 0, 150, 72).toPathData();
+      const path = font.getPath(input, x, y, fontsize).toPathData();
       return path
     }
    const len_ = (txt: any): txt is string => {

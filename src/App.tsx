@@ -25,13 +25,13 @@ function App() {
     })
   }
   useEffect(() => {
-  if(typeof inputdata !== 'undefined') {
-     optimizationText(inputdata.value, 600, 400, 32, inputdata.res).then((value) => {
+   if(typeof inputdata !== 'undefined') {
+     optimizationText(inputdata.value, window.innerWidth * 1.3, window.innerHeight * 1.3, window.innerWidth * 0.7/ inputdata.value.length, inputdata.res).then((value) => {
        console.log(value);
        setPath(value);
      })
-  }
-}, [inputdata])
+   }
+ }, [inputdata, window.innnerWidth, window.innerHeight])
 useEffect(() => {
   if (typeof inputdata !== 'undefined') {
   console.log(inputdata.value)
@@ -40,15 +40,16 @@ useEffect(() => {
   useEffect(() => {
     console.log(myPath)
   },[myPath])
+  const val_func = () => {
+    if (typeof inputdata == 'undefined') {
+      return 0
+    }
+    return inputdata.value
+  }
   return (
     <Twemoji options={{ className: 'twemoji'}}>
       <NavigateWindow isDisplay={isDis} onCancel={(value: any, res: any) => disChange(value, res)} darkmode={isDarkmode}></NavigateWindow>
-      <UserWindow path={myPath}/>
-      { typeof inputdata !== 'undefined' ? (
-      <></>
-    ):(
-      <></>
-    )}
+      <UserWindow path={myPath} value__ = {val_func()}/>
     </Twemoji>
   )
 }
