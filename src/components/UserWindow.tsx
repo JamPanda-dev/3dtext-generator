@@ -31,13 +31,13 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
   const [aastyle,setaastyle] = useState<any>({width: windowSize.width * 1.3, height: windowSize.height * 1.3, display: 'block'})
   const [target, setTarget] = useState<any>();
   const [windowDetails, setWindowDetails] = useState<any>()
-  const [frame, setFrame] = useState({
-    matrix: [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
-  })
   /*const [frame, setFrame] = useState({
+    matrix: [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+  })*/
+  const [frame, setFrame] = useState({
     translate: [0,0],
         scale: [1,1],
-  })*/
+  })
   const onresizefunction = () => {
       setWindowDetails({
         width: window.innerWidth,
@@ -157,7 +157,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
         <svg xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${windowSize.width * 1.3} ${windowSize.height * 1.3}`} style={{ width: '100%', height: '100%'}}>
           <path d={getPath()} className={'target'} ref={targetref}/>
         </svg>
-        {typeof path !== 'undefined' && urlHash && urlHash == '#beta'? (
+        {/*typeof path !== 'undefined' && urlHash && urlHash == '#beta'? (
 
          <Moveable
             target={target}
@@ -180,8 +180,8 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
       ):(
         <></>
       )
-      }
-      { /*typeof path !== 'undefined' ? (
+      */}
+      { typeof path !== 'undefined' ? (
         <Moveable
             target={target}
             scalable={true}
@@ -208,7 +208,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
         />
       ):(
         <></>
-      )*/}
+      )}
       {/*data:
         (window.innerWidth * 1.3 - len_(value_) * (window.innerWidth * 0.7/ len_(value_))) / 2
         ${((window.innerWidth * 1.3 - len_(value__) * (window.innerWidth * 0.7/ len_(value__))) / 2) + ((window.innerWidth * 0.7/ len_(value__)) * len_(value__) / 5)}px ${window.innerHeight * 1.3 / 2 - (window.innerWidth * 0.7/ len_(value__) / 2 * 0.7)}px
