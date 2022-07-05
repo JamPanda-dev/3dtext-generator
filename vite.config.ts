@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import viteCompression from 'vite-plugin-compression';
-import purgecss from '@fullhuman/postcss-purgecss';
+//import purgecss from '@fullhuman/postcss-purgecss';
 
 // https://vitejs.dev/config/
 
@@ -11,16 +11,6 @@ export default ({ command, mode }) => {
      return defineConfig({
         plugins: [react(), viteCompression()],
         // base: process.env.GITHUB_VA_ ? "/3dtext-generator/" : "/"
-        css: {
-          postcss: {
-            plugins: [
-              purgecss({
-                content: ["dist/*.html", "dist/assets/*.js"],
-                css: ["dist/assets/*.css"]
-              })
-            ],
-          },
-        },
         base: "/3dtext-generator/"
      })
    } else {
