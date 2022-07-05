@@ -15,6 +15,7 @@ library.add(faGripLines);
 library.add(faRulerHorizontal);
 type Props = {
   path: string;
+  value: any;
 }
 export const UserWindow:React.FC<Props> = ({ path , value__}) => {
   const [windowWidth, setWindowWidth] = useState<number>()
@@ -22,7 +23,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
   const [strokecolor, setstrokecolor] = useState<string>('#aabbcc')
   const [fillcolor,setfillcolor] = useState<string>('#aabbcc')
   const [windowSize, setWindowSize] = useState(useWindowDimensions());
-  const targetref = useRef(null)
+  const targetref = useRef<any>(null)
   const [Picker, SetPicker] = useState<any>()
   const [isShow, setShow] = useState<boolean>(false)
   const [kkstyle, upkkstyle] = useState<any>()
@@ -108,7 +109,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
     })
   },[fillcolor])
   const gettargetrefdetails = () => {
-    return targetref.current?.getBoundingClientRect();
+    return targetref?.current?.getBoundingClientRect();
   }
   const [style_0, setstyle_0] = useState<any>('')
   const [style_1, setstyle_1] = useState<any>('')
@@ -172,6 +173,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
             onWarp={e => {
                 frame.matrix = e.matrix
                 e.target.style.transform = `matrix3d(${e.matrix.join(",")})`;
+                //@ts-ignore
                 e.target.style.transformOrigin = `${((window.innerWidth * 1.3 - len_(value__) * (window.innerWidth * 0.7/ len_(value__))) / 2) + ((window.innerWidth * 0.7/ len_(value__)) * len_(value__) / 5) * 1.2}px ${window.innerHeight * 1.3 / 2 - (window.innerWidth * 0.7/ len_(value__) / 2) * 0.6}px`
             }}
         />

@@ -31,7 +31,7 @@ function App() {
        setPath(value);
      })
    }
- }, [inputdata, window.innnerWidth, window.innerHeight])
+ }, [inputdata, window.innerWidth, window.innerHeight])
 useEffect(() => {
   if (typeof inputdata !== 'undefined') {
   console.log(inputdata.value)
