@@ -15,7 +15,7 @@ library.add(faGripLines);
 library.add(faRulerHorizontal);
 type Props = {
   path: string;
-  value: any;
+  value__: any;
 }
 export const UserWindow:React.FC<Props> = ({ path , value__}) => {
   const [windowWidth, setWindowWidth] = useState<number>()
