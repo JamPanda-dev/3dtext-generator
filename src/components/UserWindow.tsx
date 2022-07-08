@@ -9,7 +9,7 @@ import React, {useEffect, useState, useRef} from 'react'
 //import Moveable from 'react-moveable';
 import './UserWindow.css'
 //import { JSDOM } from 'jsdom';
-
+import svgson from 'svgson'
 /* import warp program */
 import Warp from 'warpjs';
 import gsap from 'gsap';
@@ -23,6 +23,7 @@ import { faDownload, faFill, faGripLines, faRulerHorizontal } from '@fortawesome
 import { HexColorPicker } from 'react-colorful'
 import {encodeSvg}  from './other/encodeSVG'
 import styled from 'styled-components'
+import { Intro_ } from './__INTRO'
 library.add(faDownload);
 library.add(faFill);
 library.add(faGripLines);
@@ -30,8 +31,9 @@ library.add(faRulerHorizontal);
 type Props = {
   path: string;
   value__: any;
+  isDisplay?: boolean;
 }
-export const UserWindow:React.FC<Props> = ({ path , value__}) => {
+export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
   /* gsap registerPlugin: Draggable */
   gsap.registerPlugin(Draggable);
   /* define with useState and useRef */
@@ -48,8 +50,10 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
   const [aastyle,setaastyle] = useState<any>({width: windowSize.width * 1.3, height: windowSize.height * 1.3, display: 'block'})
   const [target, setTarget] = useState<any>();
   const [windowDetails, setWindowDetails] = useState<any>()
+  const [strokeWidth, setStrokeWidth] = useState<any>(0)
   var controller = useRef<SVGPathElement>(null)
-  var content = useRef<SVGElement>(null)
+  var content = useRef<SVGSVGElement>(null)
+  const [textdimensions, settextdimensions] = useState<any>()
   /* end define with useRef and useState*/
   /*const [frame, setFrame] = useState({
     matrix: [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
@@ -59,6 +63,15 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
         scale: [1,1],
   })*/
   /* define function */
+ /* useEffect(() => {
+     if (controller && content && controller.current) {
+        settextdimensions({
+          width: content.current?.getBoundingClientRect().width,
+          height: content.current?.getBoundingClientRect().height,
+        })  
+        console.log(textdimensions)
+     }
+  }, [path, content, controller]) */
   const onresizefunction = () => {
       setWindowDetails({
         width: window.innerWidth,
@@ -186,13 +199,25 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
  //     controller = useRef<SVGPathElement>(null)
  //   }
  // },[path])
+ useEffect(() => {
+  console.log(textdimensions)
+ }, [textdimensions])
   var controlPath: any = ''
   var width_: any = 0
   var height_: any = 0
   useEffect(() => {
     if (controller && controller.current && typeof path !== 'undefined' && path !== '0') {
-      console.log(controller.current.getBoundingClientRect().width)
+
+      /*console.log(controller.current.getBoundingClientRect().width)
       console.log(controller.current.getBoundingClientRect().height);
+      console.log(content.current?.getBoundingClientRect().width)
+      console.log(content.current?.getBoundingClientRect().height)*/
+      settextdimensions({
+        controller_width: controller.current.getBoundingClientRect().width,
+        controller_height: controller.current.getBoundingClientRect().height,
+        content_width: content.current?.getBoundingClientRect().width,
+        content_height: content.current?.getBoundingClientRect().height,
+      })
       controlPath = controller;
       width_ = controller.current.getBoundingClientRect().width;
       height_ = controller.current.getBoundingClientRect().height
@@ -326,6 +351,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
   }
   return (
     <span onClick={(e) => onClickP(e)}>
+    {/*<Intro_ isDisplay={!isDisplay} /> */}
     <p hidden id="path">{path}</p>
     <p hidden id="lang">{window.navigator.language}</p>
      <span className='head'>
@@ -335,7 +361,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
         <span className='icon_000' />
         <span className='controllholder'>
             <FontAwesomeIcon icon={faRulerHorizontal} className='n08m'/>
-            <input className='input__field' pattern="^[0-9]+$"  title="please input number" type="number" min="0"></input>
+            <input className='input__field' pattern="^[0-9]+$"  title="please input number" type="number" min="0" onChange={(e) => setStrokeWidth(e.target.value)}></input>
             <FontAwesomeIcon icon={faGripLines} className='n09m' />
             <span className='bg_stroke' onClick={(e) => onClick(e)} style={kkstyle}></span>
             <FontAwesomeIcon icon={faFill} className='n10m'/>
@@ -362,8 +388,11 @@ export const UserWindow:React.FC<Props> = ({ path , value__}) => {
      }
      <span className='_body'>
       <span className='_scroll' style={aastyle}>
-        <svg xmlns='http://www.w3.org/2000/svg' style={{ width: '100%', height: getstyle()}}>
-          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor}/>
+        <svg xmlns='http://www.w3.org/2000/svg' style={{ width: '100%', height: getstyle()}} ref={content}>
+          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(1.5%, 5%) scale(0.95)', transformOrigin: 'top left'}}/>
+          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={0} style={{transform: 'translate(1.5%, 5%) scale(0.95)', transformOrigin: 'top left'}}/>
+          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} />
+          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={0}/>
         </svg>
       {/*data:
         (window.innerWidth * 1.3 - len_(value_) * (window.innerWidth * 0.7/ len_(value_))) / 2

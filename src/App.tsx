@@ -6,6 +6,7 @@ import './hook/styles/twemoji.css'
 import optimizationText from './components/other/opentype_'
 import Twemoji from 'react-twemoji';
 import {removeemojis} from './components/other/remove_emoji'
+import { Intro_ } from './components/__INTRO'
 function App() {
   const [isDis, setisDis] = useState(true);
   const [isDarkmode, setDarkmode] = useState(false);
@@ -49,7 +50,8 @@ useEffect(() => {
   return (
     <Twemoji options={{ className: 'twemoji'}}>
       <NavigateWindow isDisplay={isDis} onCancel={(value: any, res: any) => disChange(value, res)} darkmode={isDarkmode}></NavigateWindow>
-      <UserWindow path={myPath} value__ = {val_func()}/>
+      <UserWindow path={myPath} value__ = {val_func()} isDisplay={!isDis}/>
+      {/*<Intro_ isDisplay={!isDis} /> */}
     </Twemoji>
   )
 }
