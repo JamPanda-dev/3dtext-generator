@@ -25,6 +25,7 @@ import {encodeSvg}  from './other/encodeSVG'
 import styled from 'styled-components'
 import { Intro_ } from './__INTRO'
 import {Popup} from 'semantic-ui-react'
+
 library.add(faDownload);
 library.add(faFill);
 library.add(faGripLines);
@@ -38,10 +39,11 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
   /* gsap registerPlugin: Draggable */
   gsap.registerPlugin(Draggable);
   /* define with useState and useRef */
+  const [understylem, setunderstyle] = useState<any>({transform: `translate(-10px, 40px) scale(0.95)`, transformOrigin: 'top center'})
   const [windowWidth, setWindowWidth] = useState<number>()
   const [windowHeight, setWindowHeight] = useState<number>()
   const [strokecolor, setstrokecolor] = useState<string>('#aabbcc')
-  const [fillcolor,setfillcolor] = useState<string>('#aabbcc')
+  const [fillcolor,setfillcolor] = useState<string>('#aab')
   const [windowSize, setWindowSize] = useState(useWindowDimensions());
   const targetref = useRef<any>(null)
   const [Picker, SetPicker] = useState<any>()
@@ -51,7 +53,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
   const [aastyle,setaastyle] = useState<any>({width: windowSize.width * 1.3, height: windowSize.height * 1.3, display: 'block'})
   const [target, setTarget] = useState<any>();
   const [windowDetails, setWindowDetails] = useState<any>()
-  const [strokeWidth, setStrokeWidth] = useState<any>(0)
+  const [strokeWidth, setStrokeWidth] = useState<any>(3)
   var controller = useRef<SVGPathElement>(null)
   var content = useRef<SVGSVGElement>(null)
   const downloadref = useRef<HTMLAnchorElement>(null)
@@ -59,6 +61,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
   const [textdimensions, settextdimensions] = useState<any>({ controller_width: 0, controller_height: 0, content_width: 0, content_height: 0, controller_top: 0, controller_left: 0})
   const [mouseEvents, setMouseEvents] = useState<any>(false)
   const [style__, setstyle__] = useState<any>()
+  var temp_list: any = []
   /* end define with useRef and useState*/
   /*const [frame, setFrame] = useState({
     matrix: [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
@@ -77,6 +80,10 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
         console.log(textdimensions)
      }
   }, [path, content, controller]) */
+  const DEPTH:number = 40
+  for (var pn= 1; pn < DEPTH; pn++) {
+    temp_list.push(pn)
+  }
   const onresizefunction = () => {
       setWindowDetails({
         width: window.innerWidth,
@@ -232,6 +239,10 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
         content_width: content.current?.getBoundingClientRect().width,
         content_height: content.current?.getBoundingClientRect().height,
       })
+      setunderstyle({
+        transform: `translate(${controller.current.getBoundingClientRect().width * ((1 - 0.95) / 2)}, 40px) scale(0.95)`, 
+        transformOrigin: 'top center'
+      })
       controlPath = controller;
       width_ = controller.current.getBoundingClientRect().width;
       height_ = controller.current.getBoundingClientRect().height
@@ -363,6 +374,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
   animate()
 
   }
+  
   const [getHeight, setHeight] = useState<any>(0)
   useEffect(() => {
     if (typeof textdimensions !== 'undefined') {
@@ -399,6 +411,18 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
       console.log('undefined err')
      }
   }, [downloadURL])*/
+  const getLayerPath = (depth: number) => {
+    return({ transform: `translate(10px ,${depth})`, transformOrigin: 'top center'})
+  }
+  const LayerPath = ({dep}: any) => {
+    var em = {transform: '', transformOrigin:''}
+    console.log(dep)
+    em.transform = 'translate(10px ,'+ dep +')'
+    em.transformOrigin = 'top center'
+    return (
+         <path d={`${getPath()}`} style={em}/>
+    )
+  }
   return (
     <span onClick={(e) => onClickP(e)}>
     {/*<Intro_ isDisplay={!isDisplay} /> */}
@@ -414,7 +438,7 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
         <span className='icon_000' />
         <span className='controllholder'>
             <FontAwesomeIcon icon={faRulerHorizontal} className='n08m'/>
-            <input className='input__field' pattern="^[0-9]+$"  title="please input number" type="number" min="0" onChange={(e) => setStrokeWidth(e.target.value)}></input>
+            <input className='input__field' pattern="^[0-9]+$"  title="please input number" type="number" min="0" onChange={(e) => setStrokeWidth(e.target.value)} defaultValue={3}></input>
             <FontAwesomeIcon icon={faGripLines} className='n09m' />
             <span className='bg_stroke' onClick={(e) => onClick(e)} style={kkstyle}></span>
             <FontAwesomeIcon icon={faFill} className='n10m'/>
@@ -441,10 +465,50 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
      <span className='_body'>
       <span className='_scroll' style={aastyle}>
         <svg xmlns='http://www.w3.org/2000/svg' style={{ width: '100%', height: getstyle()}} ref={content} id='zolin'>
-          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: `translate(-10px, 40px) scale(0.95)`, transformOrigin: 'top center'}}/>
-          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={0} style={{transform: `translate(-10px, 40px) scale(0.95)`, transformOrigin: 'top center'}}/>
-          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} />
-          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={0}/>
+          {/*<path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} style={understylem}/>
+          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={0} style={understylem}/>*/}
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-0.25px, 1px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-0.5px, 2px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-0.75px, 3px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-1px, 4px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-1.25px, 5px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-1.5px, 6px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-1.75px, 7px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-2px, 8px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-2.25px, 9px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-2.5px, 10px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-2.75px, 11px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-3px, 12px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-3.25px, 13px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-3.5px, 14px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-3.75px, 15px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-4px, 16px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-4.25px, 17px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-4.5px, 18px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-4.75px, 19px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-5px, 20px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-5.25px, 1px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-5.5px, 2px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-5.75px, 3px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-6px, 4px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-6.25px, 5px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-6.5px, 6px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-6.75px, 7px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-7px, 8px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-7.25px, 9px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-7.5px, 10px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-7.75px, 11px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-8px, 12px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-8.25px, 13px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-8.5px, 14px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-8.75px, 15px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-9px, 16px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-9.25px, 17px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-9.5px, 18px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-9.75px, 19px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={strokecolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-10px, 20px)', transformOrigin: 'top left'}} />
+          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(-0.5px, 1px)', transformOrigin: 'top left'}}/>
+          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={0} style={{transform: 'translate(-0.5px, 1px)', transformOrigin: 'top left'}}/>
         </svg>
       {/*data:
         (window.innerWidth * 1.3 - len_(value_) * (window.innerWidth * 0.7/ len_(value_))) / 2
