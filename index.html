@@ -5,7 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="/3dtext-generator/assets/favicon.17e50649.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
-    <script type="module" crossorigin src="/3dtext-generator/assets/index.d8e43388.js"></script>
+    <script>
+     function define(name, value){
+      Object.defineProperty(window, name, { 
+        get: function(){return value;},
+        set: function(){throw(name+' is already defined !!');},
+      });
+      }
+      define('DEBUG', false);
+      if(!DEBUG){
+       if(!window.console){
+         window.console = {};
+       }
+       var methods = [
+         "log", "debug", "warn", "info"
+       ];
+       for(var i=0; i<methods.length; i++){
+         console[methods[i]] = function(){};
+       }
+      }
+    </script>
+    <script type="module" crossorigin src="/3dtext-generator/assets/index.3cfee127.js"></script>
     <link rel="stylesheet" href="/3dtext-generator/assets/index.7622d315.css">
   </head>
   <body>
