@@ -215,6 +215,8 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
       settextdimensions({
         controller_width: controller.current.getBoundingClientRect().width,
         controller_height: controller.current.getBoundingClientRect().height,
+        controller_top: controller.current.getBoundingClientRect().top,
+        controller_left: controller.current.getBoundingClientRect().left,
         content_width: content.current?.getBoundingClientRect().width,
         content_height: content.current?.getBoundingClientRect().height,
       })
@@ -349,13 +351,25 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
   animate()
 
   }
+  const [getHeight, setHeight] = useState<any>(0)
+  useEffect(() => {
+    if (typeof textdimensions !== 'undefined') {
+      setHeight(textdimensions.controller_height)
+    }
+    setHeight(0)
+  },[textdimensions])
+  const onClick2 = () => {
+   // var s = new XMLSerializer().serializeToString(document.getElementById('zorin')?.outerHTML);
+   // console.log(s)
+    console.log(`data:image/svg+xml;base64,${window.btoa(`${content.current?.outerHTML}`)}`)
+  }
   return (
     <span onClick={(e) => onClickP(e)}>
     {/*<Intro_ isDisplay={!isDisplay} /> */}
     <p hidden id="path">{path}</p>
     <p hidden id="lang">{window.navigator.language}</p>
      <span className='head'>
-        <span className='btn_'>
+        <span className='btn_' onClick={() => onClick2()}>
             <FontAwesomeIcon icon={faDownload} className='fa__i_'/> DOWNLOAD
         </span>
         <span className='icon_000' />
@@ -388,10 +402,10 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
      }
      <span className='_body'>
       <span className='_scroll' style={aastyle}>
-        <svg xmlns='http://www.w3.org/2000/svg' style={{ width: '100%', height: getstyle()}} ref={content}>
-          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: 'translate(1.5%, 5%) scale(0.95)', transformOrigin: 'top left'}}/>
-          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={0} style={{transform: 'translate(1.5%, 5%) scale(0.95)', transformOrigin: 'top left'}}/>
-          <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} />
+        <svg xmlns='http://www.w3.org/2000/svg' style={{ width: '100%', height: getstyle()}} ref={content} id='zolin'>
+          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: `translate(16px, 40px) scale(0.95)`, transformOrigin: 'top left'}}/>
+          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={0} style={{transform: `translate(16px, 40px) scale(0.95)`, transformOrigin: 'top left'}}/>
+          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} />
           <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={0}/>
         </svg>
       {/*data:

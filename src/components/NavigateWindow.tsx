@@ -82,7 +82,7 @@ export const NavigateWindow: React.FC<ChildrenDispatchProps & Props> = ({isDispl
                   <>
                    <span className='bk-image'><img className='emoji_view' src='https://twemoji.maxcdn.com/v/latest/svg/270f.svg'></img></span>
                    <span className='input_query'>INPUT A TEXT</span>
-                   <textarea cols={1} onChange={(e) => set_input_data(e.target.value)} maxLength={30}></textarea>
+                   <textarea cols={1} onChange={(e) => set_input_data(e.target.value)} maxLength={30} spellCheck={false}></textarea>
                    <button className='btn' onClick={() => onCancel(input_data, result)}>Start</button>
                   </>
                  )}
