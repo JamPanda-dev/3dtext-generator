@@ -5,6 +5,26 @@
     <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <script>
+     function define(name, value){
+      Object.defineProperty(window, name, { 
+        get: function(){return value;},
+        set: function(){throw(name+' is already defined !!');},
+      });
+      }
+      define('DEBUG', false);
+      if(!DEBUG){
+       if(!window.console){
+         window.console = {};
+       }
+       var methods = [
+         "log", "debug", "warn", "info"
+       ];
+       for(var i=0; i<methods.length; i++){
+         console[methods[i]] = function(){};
+       }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
