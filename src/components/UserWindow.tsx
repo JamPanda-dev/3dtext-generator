@@ -15,7 +15,7 @@ import Warp from 'warpjs';
 import gsap from 'gsap';
 import Draggable from 'gsap/Draggable';
 /* import end warp program */
-
+import './comment.css'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faDownload, faFill, faGripLines, faRulerHorizontal } from '@fortawesome/free-solid-svg-icons'
@@ -24,6 +24,7 @@ import { HexColorPicker } from 'react-colorful'
 import {encodeSvg}  from './other/encodeSVG'
 import styled from 'styled-components'
 import { Intro_ } from './__INTRO'
+import {Popup} from 'semantic-ui-react'
 library.add(faDownload);
 library.add(faFill);
 library.add(faGripLines);
@@ -53,7 +54,11 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
   const [strokeWidth, setStrokeWidth] = useState<any>(0)
   var controller = useRef<SVGPathElement>(null)
   var content = useRef<SVGSVGElement>(null)
-  const [textdimensions, settextdimensions] = useState<any>()
+  const downloadref = useRef<HTMLAnchorElement>(null)
+  const [downloadURL, setDownloadURL] = useState<string>('')
+  const [textdimensions, settextdimensions] = useState<any>({ controller_width: 0, controller_height: 0, content_width: 0, content_height: 0, controller_top: 0, controller_left: 0})
+  const [mouseEvents, setMouseEvents] = useState<any>(false)
+  const [style__, setstyle__] = useState<any>()
   /* end define with useRef and useState*/
   /*const [frame, setFrame] = useState({
     matrix: [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
@@ -114,6 +119,13 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
       position: 'fixed',
       left: e.clientX,
       top: '21%'
+    })
+  }
+  const onClick__ = (e: any) => {
+    setMouseEvents(true)
+    setstyle__({
+      left: e.clientX,
+      top: e.clientY,
     })
   }
   useEffect(() => {
@@ -358,20 +370,47 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
     }
     setHeight(0)
   },[textdimensions])
-  const onClick2 = () => {
+  const onClick2 = (e: any) => {
    // var s = new XMLSerializer().serializeToString(document.getElementById('zorin')?.outerHTML);
    // console.log(s)
-    console.log(`data:image/svg+xml;base64,${window.btoa(`${content.current?.outerHTML}`)}`)
+    //console.log(`data:image/svg+xml;base64,${window.btoa(`${content.current?.outerHTML}`)}`)
+    function copyTextToClipboard(text: string) {
+      navigator.clipboard.writeText(text)
+      .then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+      }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+      });
+    }
+    copyTextToClipboard(`data:image/svg+xml;base64,${window.btoa(`${content.current?.outerHTML}`)}`);
+    setMouseEvents(true)
   }
+  useEffect(() => {
+    if (mouseEvents) {
+      setTimeout(() => {
+        setMouseEvents(false)
+      }, 2000)
+    }
+  }, [mouseEvents])
+  /*useEffect(() => {
+     if (downloadURL !== '' && downloadref && downloadref.current) {
+      location.href = downloadURL
+     } else {
+      console.log('undefined err')
+     }
+  }, [downloadURL])*/
   return (
     <span onClick={(e) => onClickP(e)}>
     {/*<Intro_ isDisplay={!isDisplay} /> */}
     <p hidden id="path">{path}</p>
     <p hidden id="lang">{window.navigator.language}</p>
+    <a href={downloadURL} hidden ref={downloadref}></a>
      <span className='head'>
-        <span className='btn_' onClick={() => onClick2()}>
-            <FontAwesomeIcon icon={faDownload} className='fa__i_'/> DOWNLOAD
+        <span className='btn_' onClick={(e) => onClick2(e)}>
+            <FontAwesomeIcon icon={faDownload} className='fa__i_'/>{!mouseEvents ? ` COPY URL` : ` Copied!`}
         </span>
+         
+         
         <span className='icon_000' />
         <span className='controllholder'>
             <FontAwesomeIcon icon={faRulerHorizontal} className='n08m'/>
@@ -382,7 +421,6 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
             <span className='bg_fill' style={nnstyle} onClick={(e) => onClickO(e)}></span>
         </span>
      </span>
-
 
      { style_0 !== '' ? (
        <span style={style_0} className='hext_cont'>
@@ -403,8 +441,8 @@ export const UserWindow:React.FC<Props> = ({ path , value__, isDisplay}) => {
      <span className='_body'>
       <span className='_scroll' style={aastyle}>
         <svg xmlns='http://www.w3.org/2000/svg' style={{ width: '100%', height: getstyle()}} ref={content} id='zolin'>
-          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: `translate(16px, 40px) scale(0.95)`, transformOrigin: 'top left'}}/>
-          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={0} style={{transform: `translate(16px, 40px) scale(0.95)`, transformOrigin: 'top left'}}/>
+          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} style={{transform: `translate(-10px, 40px) scale(0.95)`, transformOrigin: 'top center'}}/>
+          <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={0} style={{transform: `translate(-10px, 40px) scale(0.95)`, transformOrigin: 'top center'}}/>
           <path d={`${getPath()}`} fill={fillcolor} stroke={strokecolor} strokeWidth={strokeWidth} />
           <path d={`${getPath()}`} ref={controller} fill={fillcolor} stroke={strokecolor} strokeWidth={0}/>
         </svg>
