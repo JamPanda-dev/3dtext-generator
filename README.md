@@ -1,6 +1,7 @@
 # 3dtext-generator
-## notice
-this project is in production.
+## Preview
+![Image01](image/Image01.png)
+![Image02](image/Image02.png)
 ## How to use
 ```
 git clone https://github.com/JamPanda-dev/3dtext-generator.git
