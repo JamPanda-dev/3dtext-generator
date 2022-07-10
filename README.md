@@ -1,4 +1,6 @@
 # 3dtext-generator
+## Notice / WARN / Issue
+SVG created in this project may get stuck in some cases.
 ## Preview
 ![Image01](image/Image01.png)
 ![Image02](image/Image02.png)
