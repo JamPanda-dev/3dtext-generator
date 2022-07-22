@@ -253,7 +253,7 @@
   resolved "https://registry.yarnpkg.com/@daybrush/utils/-/utils-1.6.0.tgz#0dfd2c360764f63380df4ec0d44e176c69f7bbc3"
   integrity sha512-9MjMoOLl1U+l8lXByN3BbLZXf+mktoLyeb6t78Jz2WZ7LRldK0FNg8oW//9giO2hHCUyxS7LX6jS1hToGIfRWA==
 
-"@daybrush/utils@^1.0.0", "@daybrush/utils@^1.1.1", "@daybrush/utils@^1.3.1", "@daybrush/utils@^1.4.0", "@daybrush/utils@^1.7.0", "@daybrush/utils@^1.7.1":
+"@daybrush/utils@^1.0.0", "@daybrush/utils@^1.1.1", "@daybrush/utils@^1.3.1", "@daybrush/utils@^1.4.0", "@daybrush/utils@^1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@daybrush/utils/-/utils-1.7.1.tgz#82de000e69a0b85212933801df9b7c4c5ae15be5"
   integrity sha512-ruVDIfXeVAF4s0RxJoNx5hTjxlIRMnKoJ7N5e2m9eDyluIXB12EvhMPQdoq4a/ohJ+cPgj2MiWS5Lvmpsrx8Gg==
@@ -1171,7 +1171,7 @@ opentype.js@^1.3.4:
     string.prototype.codepointat "^0.2.1"
     tiny-inflate "^1.0.3"
 
-overlap-area@^1.0.0:
+overlap-area@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/overlap-area/-/overlap-area-1.1.0.tgz#1fcaa21bdb9cb1ace973d9aa299ae6b56557a4c2"
   integrity sha512-3dlJgJCaVeXH0/eZjYVJvQiLVVrPO4U1ZGqlATtx6QGO3b5eNM6+JgUKa7oStBTdYuGTk7gVoABCW6Tp+dhRdw==
@@ -1282,12 +1282,12 @@ react-is@^16.13.1, react-is@^16.6.3, react-is@^16.7.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-moveable@^0.33.0:
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/react-moveable/-/react-moveable-0.33.0.tgz#7c233fd9f7158dadc58ecbbd61ced34edf1b394c"
-  integrity sha512-ro8dojnbyxHFpfpDCvYwZFF050bHoaVOKTKk3Kvc1Pz863dF7Ejrd3zjdg4ix4xNbZfNsfRKdz0BHgeZzyyzOg==
+react-moveable@^0.35.0:
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/react-moveable/-/react-moveable-0.35.0.tgz#8781e1c9980e83636e7bad1413e5bf0f64d3e4d5"
+  integrity sha512-azUH7QDyKxhs5HVHrKcZtYxBSrhqq0V7FiNPS1wQA/gIfNj8Tx7xkVzpxd4oUmSbkvFrtu0mQUMwHP870dbOiA==
   dependencies:
-    "@daybrush/utils" "^1.7.0"
+    "@daybrush/utils" "^1.7.1"
     "@egjs/agent" "^2.2.1"
     "@egjs/children-differ" "^1.0.1"
     "@scena/dragscroll" "^1.1.1"
@@ -1296,7 +1296,7 @@ react-moveable@^0.33.0:
     css-to-mat "^1.0.3"
     framework-utils "^1.1.0"
     gesto "^1.9.0"
-    overlap-area "^1.0.0"
+    overlap-area "^1.1.0"
     react-css-styled "^1.0.3"
 
 react-popper@^2.3.0:
